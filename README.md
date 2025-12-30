@@ -40,12 +40,6 @@ This project is designed for users seeking **real-time, AI-powered translations*
 
 ---
 
-## 🖼 Demo / Screenshots
-![Demo Image](<img width="1920" height="865" alt="AL Language Translator Interface Workflow" src="https://github.com/user-attachments/assets/1dc5cd72-41b0-4129-b678-5c4cf4d6866d" />
-)    
-
----
-
 ## 🔧 Setup Instructions
 
 ### 1️⃣ Install Dependencies
