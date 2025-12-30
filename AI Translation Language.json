@@ -1,0 +1,175 @@
+{
+  "name": "AI Translation Language",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4bf0f097-8b88-4b66-8017-a7848d7356ec",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -480,
+        48
+      ],
+      "id": "f4cef9b0-1481-4d2c-b3da-679ff8e02586",
+      "name": "Webhook",
+      "webhookId": "4bf0f097-8b88-4b66-8017-a7848d7356ec"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Text :  {{ $json.body.input }}\nLanguage : {{ $json.body.lang }}\nTranslate the following English sentence into the selected language. \nIf the sentence contains names or technical terms, keep them as they are. \nOnly return the translated output without any explanation.\n",
+        "options": {
+          "systemMessage": ""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -16,
+        48
+      ],
+      "id": "e4e33765-c8a5-443f-acf1-0da12e7d1982",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        288
+      ],
+      "id": "b2dc289f-a788-4e82-9280-2caff396725d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pKPjb6Wkgks4DHnv",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# AI Translation Workflow — Processes English input and generates Telugu or Hindi output through the AI Agent.",
+        "height": 624,
+        "width": 1408,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -672,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "a427a590-c58e-46e9-a78e-d5d3982729f5",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### **NOTE:**\n### This node handles AI-based language translation.\n### **Input:** English text\n### **Output:** Telugu / Hindi (based on user choice)\n",
+        "height": 176,
+        "width": 256,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        416,
+        32
+      ],
+      "typeVersion": 1,
+      "id": "17dc40ac-6842-496c-b182-61626229a56b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "### Processes the message and decides the target language (Telugu or Hindi).",
+        "height": 208,
+        "width": 464,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "3e7d7a0c-9a29-4512-ab68-54a9b9343275",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "### Generates the final translation using Google Gemini.",
+        "height": 192,
+        "width": 336,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -384,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "de740b7c-3efe-45a7-9574-a74948fcd8a2",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "### Receives the text and triggers the translation workflow.",
+        "height": 208,
+        "width": 304,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -560,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "49cb4950-8d12-44cd-b251-e9d29b271d07",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d5c80679-4c8b-4508-8c9a-dfccb0e8accd",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7a0404f9182593b9c060b771750862c1252994be39a74ffaafe079bf2305c54f"
+  },
+  "id": "v1uCVnPVa3M2mRRw",
+  "tags": []
+}
